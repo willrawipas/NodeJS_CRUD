@@ -88,8 +88,8 @@ module.exports = {
         let number = req.body.number;
         
         
-        if (first_name == null){
-            let query = "UPDATE players SET first_name = '" + "ค่าว่าง" + "', last_name = '" + last_name + "', position = '" + position + "', number = '" + number + "' WHERE players.id =  '" + playerId + "'";
+      
+            let query = "UPDATE players SET first_name = '" + first_name + "', last_name = '" + last_name + "', position = '" + position + "', number = '" + number + "' WHERE players.id =  '" + playerId + "'";
             db.query(query, (err,result) => {
                 if (err) {
                     return res.status(500).send(err);
@@ -97,7 +97,7 @@ module.exports = {
     
                 res.redirect('/');
             });
-        }
+       
         
     },
     deletePlayer: (req, res) => {

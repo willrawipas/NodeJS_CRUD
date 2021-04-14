@@ -33,8 +33,9 @@ app.set('view engine', 'ejs');
 //app.use(require('connect').bodyParser()); 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }));
+//app.use(bodyParser.json()); // parse form data client
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+app.use(fileUpload());
 
 
 app.get('/', getHomePage);
@@ -42,17 +43,17 @@ app.get('/add', addPlayerPage);
 app.get('/edit/:id', editPlayerPage);
 app.get('/delete/:id', deletePlayer);
 app.post('/add', addPlayer);
-//app.post('/edit/:id', editPlayer);
+app.post('/edit/:id', editPlayer);
 
-app.post('/edit/:id', (req, res) => {
-    var c = {first_name : req.body.first_name}
-    console.log(c)
-    console.log(req.body)
-	console.log(req.body.first_name)
-    console.log(req.params.id)
-	res.send('Hello World!')
+//app.post('/edit/:id', (req, res) => {
+ //   var c = {first_name : req.body.first_name}
+ //   console.log(c)
+  //  console.log(req.body)
+//	console.log(req.body.first_name)
+  //  console.log(req.params.id)
+//res.redirect('/');
     
-})
+//})
 
 app.listen(port, ()=> {
     console.log(`Server running on port : ${port}`)
